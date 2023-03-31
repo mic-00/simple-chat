@@ -28,10 +28,18 @@ function App() {
   }, []);
 
   const handleSubmit = (event) => {
-    setMessages([ ...messages, {
+    setMessages(messages => [ ...messages, {
       from: 'You',
       content: event.target.content.value
     }]);
+    axios
+        .get(`https://api.humorapi.com/jokes/random?api-key=${process.env.REACT_APP_API_KEY}`)
+        .then(res => {
+          setMessages(messages => [ ...messages, {
+            from: 'Mario',
+            content: res.data.joke
+          }]);
+        });
   }
 
   return (
