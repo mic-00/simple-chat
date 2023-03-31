@@ -2,12 +2,13 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import MessagesList from './MessagesList';
 import TextInput from './TextInput';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
   const [ messages, setMessages ] = useState([{
     from: 'You',
+    datetime: Date(),
     content: 'Hello World!'
   }]);
 
@@ -20,6 +21,7 @@ function App() {
           .then(res => {
             setMessages(messages => [ ...messages, {
               from: 'Luigi',
+              datetime: Date(),
               content: res.data.text
             } ]);
           });
@@ -30,6 +32,7 @@ function App() {
   const handleSubmit = (event) => {
     setMessages(messages => [ ...messages, {
       from: 'You',
+      datetime: Date(),
       content: event.target.content.value
     }]);
     axios
@@ -37,6 +40,7 @@ function App() {
         .then(res => {
           setMessages(messages => [ ...messages, {
             from: 'Mario',
+            datetime: Date(),
             content: res.data.joke
           }]);
         });
