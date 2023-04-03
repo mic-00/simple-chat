@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import MessagesList from './MessagesList';
-import TextInput from './TextInput';
+import MessagesList from './MessagesList/MessagesList';
+import TextInput from './TextInput/TextInput';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
 
@@ -46,9 +47,13 @@ function App() {
         });
   }
 
+  const deleteMessage = (index) => {
+    setMessages([ ...messages.slice(0, index), ...messages.slice(index + 1) ]);
+  }
+
   return (
     <div className="App">
-      <MessagesList messages={messages} />
+      <MessagesList messages={messages} onDelete={deleteMessage} />
       <TextInput onSubmit={handleSubmit} />
     </div>
   );

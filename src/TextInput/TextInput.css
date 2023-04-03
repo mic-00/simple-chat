@@ -1,0 +1,7 @@
+.textinput {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: .5rem;
+    background-color: #8FBC8B;
+}
